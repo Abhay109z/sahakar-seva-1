@@ -9,7 +9,8 @@ import { COOPERATIVE_WORKERS, COOPERATIVE_SOCIETIES, WELFARE_METRICS } from "./s
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+// Bind to port 3000 in AI Studio; support dynamic PORT when deploying to Render
+const PORT = process.env.RENDER ? (Number(process.env.PORT) || 3000) : 3000;
 
 app.use(express.json());
 

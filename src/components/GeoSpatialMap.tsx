@@ -154,7 +154,7 @@ export const GeoSpatialMap: React.FC<GeoSpatialMapProps> = ({
                     <h3 className="font-bold text-sm text-[#231715] truncate">
                       {activeWorker.name}
                     </h3>
-                    <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded bg-[#FBF4E8] border border-[#ECD9B8] text-[#8F5B12]">
+                    <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-[#FBF0F2] border border-[#F0CCD3] text-[#8B1D31]">
                       ★ {activeWorker.rating}
                     </span>
                   </div>

@@ -216,7 +216,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   </div>
                   <div className="flex justify-between">
                     <span>Medical & Emergency Reserve (3%):</span>
-                    <span className="font-bold text-[#8F5B12]">₹{emergencyReserve}</span>
+                    <span className="font-bold text-[#8B1D31]">₹{emergencyReserve}</span>
                   </div>
                   <div className="flex justify-between text-[#847571] line-through">
                     <span>Private Gig Corporate Extraction Cut (0%):</span>
@@ -372,16 +372,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               </div>
 
               {/* Secret Safety OTP */}
-              <div className="bg-[#FBF4E8] border border-[#ECD9B8] text-[#8F5B12] rounded-xl p-3.5 flex items-center justify-between">
+              <div className="bg-[#FBF0F2] border border-[#F0CCD3] text-[#8B1D31] rounded-xl p-3.5 flex items-center justify-between">
                 <div>
-                  <div className="text-[10px] font-bold uppercase text-[#8F5B12]">
+                  <div className="text-[10px] font-bold uppercase text-[#8B1D31]">
                     Customer Safety Verification OTP
                   </div>
-                  <div className="text-xs text-[#8F5B12]/80">
+                  <div className="text-xs text-[#8B1D31]/80">
                     Show to artisan only when work begins
                   </div>
                 </div>
-                <div className="text-2xl font-mono font-bold text-[#8F5B12] tracking-widest bg-white border border-[#ECD9B8] px-3 py-1 rounded-lg">
+                <div className="text-2xl font-mono font-bold text-[#8B1D31] tracking-widest bg-white border border-[#F0CCD3] px-3 py-1 rounded-lg shadow-2xs">
                   {confirmedBooking.otp}
                 </div>
               </div>

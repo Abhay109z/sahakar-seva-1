@@ -96,8 +96,8 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                             booking.status === "COMPLETED"
                               ? "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3]"
                               : booking.status === "DISPATCHED"
-                              ? "bg-[#FBF4E8] text-[#8F5B12] border border-[#ECD9B8] animate-pulse"
-                              : "bg-[#FBF4E8] text-[#8F5B12] border border-[#ECD9B8]"
+                              ? "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] animate-pulse"
+                              : "bg-[#FAF7F2] text-[#5A4D4A] border border-[#E8DFD5]"
                           }`}
                         >
                           {booking.status}
@@ -154,7 +154,7 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                       <div className="flex items-center gap-3">
                         <div className="text-right">
                           <div className="text-[10px] text-[#847571] font-bold">SAFETY OTP</div>
-                          <div className="font-mono font-bold text-sm text-[#8F5B12] bg-[#FBF4E8] px-2 py-0.5 rounded border border-[#ECD9B8]">
+                          <div className="font-mono font-bold text-sm text-[#8B1D31] bg-[#FBF0F2] px-2 py-0.5 rounded border border-[#F0CCD3]">
                             {booking.otp}
                           </div>
                         </div>
@@ -174,7 +174,7 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                   <div className="pt-2 border-t border-[#E8DFD5] flex items-center justify-between">
                     {booking.rating ? (
                       <div className="text-xs text-[#231715] font-semibold flex items-center gap-1.5">
-                        <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
+                        <Star className="w-4 h-4 fill-[#8B1D31] text-[#8B1D31]" />
                         <span>
                           Rated {booking.rating}/5 stars • "{booking.reviewComment}"
                         </span>
@@ -232,7 +232,7 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                     <Star
                       className={`w-7 h-7 ${
                         reviewRating >= star
-                          ? "fill-amber-400 text-amber-400"
+                          ? "fill-[#8B1D31] text-[#8B1D31]"
                           : "text-[#E8DFD5]"
                       }`}
                     />

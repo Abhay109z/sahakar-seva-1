@@ -93,7 +93,7 @@ export const InstitutionalBooking: React.FC = () => {
           >
             <div>
               {pkg.popular && (
-                <span className="px-2 py-0.5 rounded-full bg-[#FBF4E8] text-[#8F5B12] text-[10px] font-bold border border-[#ECD9B8]">
+                <span className="px-2 py-0.5 rounded-full bg-[#FBF0F2] text-[#8B1D31] text-[10px] font-bold border border-[#F0CCD3]">
                   MOST POPULAR
                 </span>
               )}
@@ -108,7 +108,7 @@ export const InstitutionalBooking: React.FC = () => {
               </div>
               <button
                 onClick={() => setFormData({ ...formData, servicePackage: pkg.title })}
-                className="px-3 py-1.5 rounded-lg bg-[#FAF7F2] hover:bg-[#F5EFE8] text-[#5A4D4A] hover:text-[#231715] text-xs font-semibold transition-colors border border-[#E8DFD5] cursor-pointer"
+                className="px-3 py-1.5 rounded-lg bg-white hover:bg-[#FBF0F2] text-[#8B1D31] hover:text-[#731627] text-xs font-semibold transition-colors border border-[#8B1D31] cursor-pointer"
               >
                 Select
               </button>

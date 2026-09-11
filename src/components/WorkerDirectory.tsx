@@ -131,8 +131,8 @@ export const WorkerDirectory: React.FC<WorkerDirectoryProps> = ({
                 <div className="space-y-0.5 flex-1 min-w-0">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-bold text-[#231715] truncate">{worker.name}</h3>
-                    <span className="flex items-center gap-1 text-[11px] font-bold text-[#8F5B12] bg-[#FBF4E8] px-1.5 py-0.5 rounded border border-[#ECD9B8]">
-                      <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                    <span className="flex items-center gap-1 text-[11px] font-bold text-[#8B1D31] bg-[#FBF0F2] px-1.5 py-0.5 rounded border border-[#F0CCD3]">
+                      <Star className="w-3 h-3 fill-[#8B1D31] text-[#8B1D31]" />
                       {worker.rating}
                     </span>
                   </div>
@@ -170,7 +170,7 @@ export const WorkerDirectory: React.FC<WorkerDirectoryProps> = ({
                 </div>
               </div>
 
-              {/* Badges and Verification Checklist */}
+              {/* Badges and Verification Checklist in matching colors */}
               <div className="flex flex-wrap gap-1.5 text-[10px]">
                 {worker.policeVerified && (
                   <span className="px-2 py-0.5 rounded-full bg-[#FBF0F2] text-[#8B1D31] font-semibold border border-[#F0CCD3] flex items-center gap-1">
@@ -178,12 +178,12 @@ export const WorkerDirectory: React.FC<WorkerDirectoryProps> = ({
                     Police Verified
                   </span>
                 )}
-                <span className="px-2 py-0.5 rounded-full bg-[#FAF7F2] text-[#231715] font-semibold border border-[#E8DFD5] flex items-center gap-1">
+                <span className="px-2 py-0.5 rounded-full bg-[#FBF0F2] text-[#8B1D31] font-semibold border border-[#F0CCD3] flex items-center gap-1">
                   <CheckCircle2 className="w-3 h-3 text-[#8B1D31]" />
                   PMSBY Insured
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-[#FBF4E8] text-[#8F5B12] font-semibold border border-[#ECD9B8] flex items-center gap-1">
-                  <Award className="w-3 h-3 text-[#8F5B12]" />
+                <span className="px-2 py-0.5 rounded-full bg-[#FBF0F2] text-[#8B1D31] font-semibold border border-[#F0CCD3] flex items-center gap-1">
+                  <Award className="w-3 h-3 text-[#8B1D31]" />
                   NSDC / ITI
                 </span>
               </div>

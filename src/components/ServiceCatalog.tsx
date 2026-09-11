@@ -31,57 +31,57 @@ interface ServiceCatalogProps {
   cartItemIds: string[];
 }
 
-// Jewel-toned icon containers for the midnight slate theme
+// Unified Costa Crimson & Warm Cream icon styling for harmonious matching color
 const ICON_MAP: Record<string, { icon: React.ReactNode; bg: string; color: string }> = {
   Zap: {
     icon: <Zap className="w-5 h-5" />,
-    bg: "bg-amber-50 group-hover:bg-amber-100 text-amber-700 border border-amber-200/80",
-    color: "text-amber-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Droplets: {
     icon: <Droplets className="w-5 h-5" />,
-    bg: "bg-sky-50 group-hover:bg-sky-100 text-sky-700 border border-sky-200/80",
-    color: "text-sky-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Hammer: {
     icon: <Hammer className="w-5 h-5" />,
-    bg: "bg-amber-50 group-hover:bg-amber-100 text-amber-800 border border-amber-200/80",
-    color: "text-amber-800",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Sparkles: {
     icon: <Sparkles className="w-5 h-5" />,
-    bg: "bg-emerald-50 group-hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80",
-    color: "text-emerald-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   HeartPulse: {
     icon: <HeartPulse className="w-5 h-5" />,
-    bg: "bg-rose-50 group-hover:bg-rose-100 text-rose-700 border border-rose-200/80",
-    color: "text-rose-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Soup: {
     icon: <UtensilsCrossed className="w-5 h-5" />,
-    bg: "bg-orange-50 group-hover:bg-orange-100 text-orange-700 border border-orange-200/80",
-    color: "text-orange-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Car: {
     icon: <Car className="w-5 h-5" />,
-    bg: "bg-indigo-50 group-hover:bg-indigo-100 text-indigo-700 border border-indigo-200/80",
-    color: "text-indigo-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Trees: {
     icon: <Trees className="w-5 h-5" />,
-    bg: "bg-emerald-50 group-hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80",
-    color: "text-emerald-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Paintbrush: {
     icon: <Paintbrush className="w-5 h-5" />,
-    bg: "bg-purple-50 group-hover:bg-purple-100 text-purple-700 border border-purple-200/80",
-    color: "text-purple-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
   Wrench: {
     icon: <Wrench className="w-5 h-5" />,
-    bg: "bg-slate-100 group-hover:bg-slate-200 text-slate-700 border border-slate-200/80",
-    color: "text-slate-700",
+    bg: "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] group-hover:bg-[#8B1D31] group-hover:text-white transition-colors",
+    color: "text-[#8B1D31]",
   },
 };
 
@@ -216,10 +216,10 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
         </div>
       </section>
 
-      {/* 2. Trust Bar (Clean, authoritative indicators) */}
+      {/* 2. Trust Bar (Clean, authoritative indicators in matching Costa palette) */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-white p-3.5 rounded-xl border border-[#E8DFD5] shadow-xs flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-[#FBF4E8] text-[#8F5B12] flex items-center justify-center font-bold text-sm shrink-0 border border-[#ECD9B8]">
+          <div className="w-9 h-9 rounded-lg bg-[#FBF0F2] text-[#8B1D31] flex items-center justify-center font-bold text-sm shrink-0 border border-[#F0CCD3]">
             ★
           </div>
           <div>
@@ -249,7 +249,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
         </div>
 
         <div className="bg-white p-3.5 rounded-xl border border-[#E8DFD5] shadow-xs flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-[#F5EFE8] text-[#231715] flex items-center justify-center shrink-0 border border-[#E5DDD2]">
+          <div className="w-9 h-9 rounded-lg bg-[#FBF0F2] text-[#8B1D31] flex items-center justify-center shrink-0 border border-[#F0CCD3]">
             <CheckCircle2 className="w-4 h-4 text-[#8B1D31]" />
           </div>
           <div>
@@ -334,7 +334,7 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
 
                       {/* Rating & Duration */}
                       <div className="flex items-center gap-2 mt-1 text-[11px] text-[#847571]">
-                        <span className="inline-flex items-center gap-0.5 font-bold text-[#8F5B12] bg-[#FBF4E8] border border-[#ECD9B8] px-1.5 py-0.5 rounded text-[11px]">
+                        <span className="inline-flex items-center gap-0.5 font-bold text-[#8B1D31] bg-[#FBF0F2] border border-[#F0CCD3] px-1.5 py-0.5 rounded text-[11px]">
                           ★ {sub.rating}
                         </span>
                         <span>({sub.totalBookings.toLocaleString()} booked)</span>

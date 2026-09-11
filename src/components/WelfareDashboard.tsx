@@ -118,16 +118,16 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
               <div className="text-[10px] text-[#8B1D31]/80 font-medium">92% to artisan account</div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8DFD5]">
-              <div className="text-xs text-[#231715] font-semibold">Welfare & Pension</div>
-              <div className="text-xl font-extrabold text-[#231715] mt-1">₹{calculatedWelfare}</div>
-              <div className="text-[10px] text-[#5A4D4A] font-medium">5% to society pool</div>
+            <div className="p-4 rounded-xl bg-[#FBF0F2] border border-[#F0CCD3]">
+              <div className="text-xs text-[#8B1D31] font-semibold">Welfare & Pension</div>
+              <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedWelfare}</div>
+              <div className="text-[10px] text-[#8B1D31]/80 font-medium">5% to society pool</div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#FBF4E8] border border-[#ECD9B8]">
-              <div className="text-xs text-[#8F5B12] font-semibold">Accident & Health</div>
-              <div className="text-xl font-extrabold text-[#8F5B12] mt-1">₹{calculatedEmergency}</div>
-              <div className="text-[10px] text-[#8F5B12]/80 font-medium">3% to emergency pool</div>
+            <div className="p-4 rounded-xl bg-[#FBF0F2] border border-[#F0CCD3]">
+              <div className="text-xs text-[#8B1D31] font-semibold">Accident & Health</div>
+              <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedEmergency}</div>
+              <div className="text-[10px] text-[#8B1D31]/80 font-medium">3% to emergency pool</div>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
 
           <div className="bg-[#FAF7F2] p-5 rounded-xl border border-[#E8DFD5] space-y-2">
             <div className="font-bold text-[#231715] text-sm flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#8F5B12]" />
+              <span className="w-2 h-2 rounded-full bg-[#8B1D31]" />
               Ayushman Bharat (PM-JAY)
             </div>
             <p className="text-[#5A4D4A] leading-relaxed">
@@ -173,7 +173,7 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
 
           <div className="bg-[#FAF7F2] p-5 rounded-xl border border-[#E8DFD5] space-y-2">
             <div className="font-bold text-[#231715] text-sm flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#5A4D4A]" />
+              <span className="w-2 h-2 rounded-full bg-[#8B1D31]" />
               e-Shram & Labour Welfare Board
             </div>
             <p className="text-[#5A4D4A] leading-relaxed">

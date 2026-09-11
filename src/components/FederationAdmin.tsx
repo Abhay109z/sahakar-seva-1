@@ -154,7 +154,7 @@ export const FederationAdmin: React.FC = () => {
           >
             <ShieldCheck className={`w-4 h-4 ${adminTab === "VERIFICATION_QUEUE" ? "text-white" : "text-[#8B1D31]"}`} />
             Worker Onboarding Queue
-            <span className="px-1.5 py-0.2 rounded-full bg-[#FBF4E8] text-[#8F5B12] border border-[#ECD9B8] text-[10px] font-bold">
+            <span className="px-1.5 py-0.2 rounded-full bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] text-[10px] font-bold">
               {pendingWorkers.filter((w) => w.status === "PENDING").length}
             </span>
           </button>
@@ -303,8 +303,8 @@ export const FederationAdmin: React.FC = () => {
                             item.priorityLevel === "CRITICAL"
                               ? "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3]"
                               : item.priorityLevel === "HIGH"
-                              ? "bg-[#FBF4E8] text-[#8F5B12] border border-[#ECD9B8]"
-                              : "bg-[#FAF7F2] text-[#231715] border border-[#E8DFD5]"
+                              ? "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3]"
+                              : "bg-[#FAF7F2] text-[#5A4D4A] border border-[#E8DFD5]"
                           }`}
                         >
                           {item.priorityLevel} PRIORITY
@@ -380,7 +380,7 @@ export const FederationAdmin: React.FC = () => {
                           ? "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3]"
                           : worker.status === "REJECTED"
                           ? "bg-white text-[#847571] border border-[#E8DFD5]"
-                          : "bg-[#FBF4E8] text-[#8F5B12] border border-[#ECD9B8]"
+                          : "bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3]"
                       }`}
                     >
                       {worker.status}
@@ -443,7 +443,7 @@ export const FederationAdmin: React.FC = () => {
                 </div>
 
                 <div className="text-right">
-                  <span className="text-xs font-bold text-[#8F5B12] bg-[#FBF4E8] border border-[#ECD9B8] px-2 py-1 rounded-lg">
+                  <span className="text-xs font-bold text-[#8B1D31] bg-[#FBF0F2] border border-[#F0CCD3] px-2 py-1 rounded-lg">
                     ★ {soc.rating}
                   </span>
                 </div>

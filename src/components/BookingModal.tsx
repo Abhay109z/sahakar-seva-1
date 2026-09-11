@@ -109,7 +109,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             </div>
             <h2 className="text-xl font-bold text-[#231715] mt-0.5">{subCategory.title}</h2>
             <div className="flex items-center gap-2 mt-1 text-xs text-[#847571]">
-              <span className="text-[#8F5B12] font-bold bg-[#FBF4E8] border border-[#ECD9B8] px-1.5 py-0.5 rounded text-[11px]">
+              <span className="text-[#8B1D31] font-bold bg-[#FBF0F2] border border-[#F0CCD3] px-1.5 py-0.5 rounded text-[11px]">
                 ★ {subCategory.rating}
               </span>
               <span>•</span>
@@ -149,16 +149,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <div className="text-[9px] text-[#8B1D31] font-medium">Direct to Artisan</div>
               </div>
 
-              <div className="bg-white p-2.5 rounded-lg border border-[#E8DFD5] shadow-2xs">
+              <div className="bg-white p-2.5 rounded-lg border border-[#F0CCD3] shadow-2xs">
                 <div className="text-[11px] text-[#847571]">Society Fund (5%)</div>
-                <div className="font-extrabold text-[#231715] text-sm">₹{societyWelfare}</div>
+                <div className="font-extrabold text-[#8B1D31] text-sm">₹{societyWelfare}</div>
                 <div className="text-[9px] text-[#5A4D4A] font-medium">Pension & Welfare</div>
               </div>
 
-              <div className="bg-white p-2.5 rounded-lg border border-[#E8DFD5] shadow-2xs">
+              <div className="bg-white p-2.5 rounded-lg border border-[#F0CCD3] shadow-2xs">
                 <div className="text-[11px] text-[#847571]">Medical Pool (3%)</div>
-                <div className="font-extrabold text-[#8F5B12] text-sm">₹{emergencyReserve}</div>
-                <div className="text-[9px] text-[#8F5B12] font-medium">PMSBY Coverage</div>
+                <div className="font-extrabold text-[#8B1D31] text-sm">₹{emergencyReserve}</div>
+                <div className="text-[9px] text-[#5A4D4A] font-medium">PMSBY Coverage</div>
               </div>
             </div>
 
