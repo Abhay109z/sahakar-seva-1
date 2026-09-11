@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-costa: #8B1D31;
+  --color-costa-hover: #731627;
+  --color-costa-dark: #5A0E1C;
+  --color-costa-light: #A52B43;
+  --color-costa-tint: #FBF0F2;
+  --color-costa-border: #F0CCD3;
+  --color-costa-cream: #FAF7F2;
+  --color-costa-espresso: #231715;
+}
