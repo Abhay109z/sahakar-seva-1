@@ -15,7 +15,6 @@ import { CheckoutModal } from "./components/CheckoutModal";
 import { EmergencySOSModal } from "./components/EmergencySOSModal";
 import { MyBookingsModal } from "./components/MyBookingsModal";
 import { GeoSpatialMap } from "./components/GeoSpatialMap";
-import { InstitutionalBooking } from "./components/InstitutionalBooking";
 import {
   NavigationTab,
   LanguageCode,
@@ -195,8 +194,6 @@ export default function App() {
         {currentTab === "WELFARE" && <WelfareDashboard language={language} />}
 
         {currentTab === "FEDERATION_ADMIN" && <FederationAdmin />}
-
-        {currentTab === "INSTITUTIONAL" && <InstitutionalBooking />}
 
         {currentTab === "JOIN_COOP" && (
           <WorkerRegistration

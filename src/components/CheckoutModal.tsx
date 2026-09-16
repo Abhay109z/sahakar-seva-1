@@ -198,30 +198,55 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 />
               </div>
 
-              {/* Transparent Cooperative Fee Decomposition (92 / 5 / 3) */}
-              <div className="bg-[#FBF0F2] border border-[#F0CCD3] rounded-xl p-4 space-y-2.5 text-xs">
-                <div className="font-bold text-[#8B1D31] flex items-center justify-between">
-                  <span>Transparent Price Breakdown (92 / 5 / 3 Charter):</span>
-                  <span className="text-base font-extrabold text-[#231715]">₹{totalAmount}</span>
+              {/* Clean Customer Order & Price Summary */}
+              <div className="bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl p-4 space-y-2.5 text-xs">
+                <div className="font-bold text-[#231715] flex items-center justify-between">
+                  <span>Price Summary:</span>
+                  <span className="text-base font-extrabold text-[#8B1D31]">₹{totalAmount}</span>
                 </div>
 
-                <div className="space-y-1.5 text-[#5A4D4A] pt-1.5 border-t border-[#F0CCD3]">
+                <div className="space-y-1.5 text-[#5A4D4A] pt-1.5 border-t border-[#E8DFD5]">
                   <div className="flex justify-between">
-                    <span>Direct Skilled Worker Fair Wage (92%):</span>
-                    <span className="font-bold text-[#8B1D31]">₹{workerPayout}</span>
+                    <span>Services Total ({items.reduce((s, i) => s + i.quantity, 0)} items):</span>
+                    <span className="font-semibold text-[#231715]">₹{totalAmount}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Primary Society Welfare & Pension Fund (5%):</span>
-                    <span className="font-bold text-[#231715]">₹{welfarePool}</span>
+                  <div className="flex justify-between text-[#8B1D31]">
+                    <span>Convenience & Platform Fee:</span>
+                    <span className="font-bold">₹0 (Free • Cooperative Benefit)</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Medical & Emergency Reserve (3%):</span>
-                    <span className="font-bold text-[#8B1D31]">₹{emergencyReserve}</span>
+                  <div className="flex justify-between text-[#5A4D4A]">
+                    <span>Artisan Insurance & 30-Day Warranty:</span>
+                    <span className="font-semibold text-[#8B1D31]">Included Free</span>
                   </div>
-                  <div className="flex justify-between text-[#847571] line-through">
-                    <span>Private Gig Corporate Extraction Cut (0%):</span>
-                    <span>₹0</span>
+                  <div className="flex justify-between pt-1.5 border-t border-[#E8DFD5] font-bold text-sm text-[#231715]">
+                    <span>Total Amount Payable:</span>
+                    <span className="text-[#8B1D31]">₹{totalAmount}</span>
                   </div>
+                </div>
+
+                {/* Cooperative 92 / 5 / 3 Fair Allocation */}
+                <div className="pt-2 border-t border-[#E8DFD5] text-[11px] text-[#5A4D4A] space-y-1">
+                  <div className="flex items-center justify-between text-[10px] font-bold text-[#8B1D31] uppercase">
+                    <span>Transparent Value Distribution:</span>
+                    <span>0% Extractive Commission</span>
+                  </div>
+                  <div className="flex justify-between text-[11px]">
+                    <span>Worker Fair Wage (92%):</span>
+                    <span className="font-bold text-[#8B1D31]">₹{workerPayout} (Direct to Artisan)</span>
+                  </div>
+                  <div className="flex justify-between text-[11px]">
+                    <span>Platform & Maintenance (5%):</span>
+                    <span className="font-medium text-[#231715]">₹{welfarePool} (Tech & Operations)</span>
+                  </div>
+                  <div className="flex justify-between text-[11px]">
+                    <span>Worker Insurance (3%):</span>
+                    <span className="font-medium text-[#231715]">₹{emergencyReserve} (PMSBY & Medical)</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 text-[11px] text-[#8B1D31] font-medium pt-0.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  <span>Fixed transparent rates • Certified & background-checked artisan</span>
                 </div>
               </div>
 
@@ -383,6 +408,25 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 </div>
                 <div className="text-2xl font-mono font-bold text-[#8B1D31] tracking-widest bg-white border border-[#F0CCD3] px-3 py-1 rounded-lg shadow-2xs">
                   {confirmedBooking.otp}
+                </div>
+              </div>
+
+              {/* Statutory 92/5/3 Value Allocation Voucher */}
+              <div className="bg-white p-3 rounded-lg border border-[#E8DFD5] space-y-1 text-[11px] text-[#5A4D4A]">
+                <div className="font-bold text-[10px] text-[#8B1D31] uppercase tracking-wider">
+                  Statutory Cooperative Value Allocation (92 / 5 / 3)
+                </div>
+                <div className="flex justify-between">
+                  <span>Worker Direct Wage (92%):</span>
+                  <span className="font-bold text-[#8B1D31]">₹{confirmedBooking.workerPayoutRupees}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Platform & Maintenance (5%):</span>
+                  <span className="font-medium text-[#231715]">₹{confirmedBooking.welfarePoolRupees}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Worker Insurance (3%):</span>
+                  <span className="font-medium text-[#231715]">₹{confirmedBooking.emergencyReserveRupees}</span>
                 </div>
               </div>
 

@@ -25,8 +25,8 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
   const [activeTab, setActiveTab] = useState<"METRICS" | "SCHEMES" | "BENEFICIARIES">("METRICS");
   const [simulationSpend, setSimulationSpend] = useState<number>(1000);
 
-  const calculatedWelfare = Math.round(simulationSpend * 0.05);
-  const calculatedEmergency = Math.round(simulationSpend * 0.03);
+  const calculatedPlatformMaintenance = Math.round(simulationSpend * 0.05);
+  const calculatedInsurance = Math.round(simulationSpend * 0.03);
   const calculatedWorkerWage = Math.round(simulationSpend * 0.92);
 
   return (
@@ -36,15 +36,16 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
         <div className="max-w-3xl space-y-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FBF0F2] text-[#8B1D31] border border-[#F0CCD3] text-xs font-semibold">
             <HeartHandshake className="w-3.5 h-3.5 text-[#8B1D31]" />
-            Social Security & Worker Welfare Architecture
+            Transparent Cooperative Value Architecture (92 / 5 / 3)
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#231715]">
             Dignity, 92% Fair Wages & Universal Social Protection
           </h1>
           <p className="text-[#5A4D4A] text-xs sm:text-sm leading-relaxed">
-            Unlike commercial aggregators charging 25–40% commissions that treat blue-collar workers as disposable contractors,
-            Sahakar Seva automatically allocates <strong className="text-[#231715] font-bold">92% directly to the artisan</strong>, reserving 5% for
-            member-owned welfare, accident insurance, and retirement funds.
+            Unlike commercial aggregators charging 25–40% commissions that extract value from workers and consumers,
+            Sahakar Seva automatically allocates <strong className="text-[#231715] font-bold">92% directly to the worker</strong>,{" "}
+            <strong className="text-[#231715] font-bold">5% to platform & maintenance</strong>, and{" "}
+            <strong className="text-[#8B1D31] font-bold">3% to worker insurance</strong> & emergency health reserves.
           </p>
         </div>
       </div>
@@ -113,21 +114,21 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
 
           <div className="grid grid-cols-3 gap-3 text-center pt-2">
             <div className="p-4 rounded-xl bg-[#FBF0F2] border border-[#F0CCD3]">
-              <div className="text-xs text-[#8B1D31] font-semibold">Worker Direct Payout</div>
+              <div className="text-xs text-[#8B1D31] font-semibold">Worker Payout</div>
               <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedWorkerWage}</div>
-              <div className="text-[10px] text-[#8B1D31]/80 font-medium">92% to artisan account</div>
+              <div className="text-[10px] text-[#8B1D31]/80 font-medium">92% direct to worker</div>
             </div>
 
             <div className="p-4 rounded-xl bg-[#FBF0F2] border border-[#F0CCD3]">
-              <div className="text-xs text-[#8B1D31] font-semibold">Welfare & Pension</div>
-              <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedWelfare}</div>
-              <div className="text-[10px] text-[#8B1D31]/80 font-medium">5% to society pool</div>
+              <div className="text-xs text-[#8B1D31] font-semibold">Platform & Maintenance</div>
+              <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedPlatformMaintenance}</div>
+              <div className="text-[10px] text-[#8B1D31]/80 font-medium">5% platform operations</div>
             </div>
 
             <div className="p-4 rounded-xl bg-[#FBF0F2] border border-[#F0CCD3]">
-              <div className="text-xs text-[#8B1D31] font-semibold">Accident & Health</div>
-              <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedEmergency}</div>
-              <div className="text-[10px] text-[#8B1D31]/80 font-medium">3% to emergency pool</div>
+              <div className="text-xs text-[#8B1D31] font-semibold">Worker Insurance</div>
+              <div className="text-xl font-extrabold text-[#8B1D31] mt-1">₹{calculatedInsurance}</div>
+              <div className="text-[10px] text-[#8B1D31]/80 font-medium">3% accident & medical cover</div>
             </div>
           </div>
         </div>
@@ -137,7 +138,7 @@ export const WelfareDashboard: React.FC<WelfareDashboardProps> = ({ language }) 
       <div className="bg-white border border-[#E8DFD5] rounded-xl p-6 sm:p-8 space-y-5 shadow-xs">
         <div>
           <div className="text-xs font-bold text-[#8B1D31] uppercase tracking-wider">
-            Institutional Linkages
+            Statutory Social Protection
           </div>
           <h3 className="text-xl font-bold mt-1 text-[#231715]">
             Government Social Protection Program Integrations

@@ -10,7 +10,6 @@ import {
   ShoppingBag,
   Clock,
   ChevronDown,
-  Briefcase,
   Check,
 } from "lucide-react";
 import { LanguageCode, NavigationTab } from "../types";
@@ -77,6 +76,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
 
+  const isFederationMode = [
+    "FEDERATION_ADMIN",
+    "WELFARE",
+    "JOIN_COOP",
+  ].includes(currentTab);
+
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-[#E8DFD5] shadow-xs text-[#231715]">
       {/* Top Value Ticker (Signature Costa Espresso Bar) */}
@@ -85,16 +90,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 font-bold text-white">
               <ShieldCheck className="w-3.5 h-3.5 text-[#F1A2B2]" />
-              Multi-State Co-operative Societies Act, 2002
+              Certified Labour Cooperative Network
             </span>
             <span className="text-[#5A4D4A] hidden sm:inline">•</span>
             <span className="text-[#D8CDC5] font-medium hidden sm:inline">
-              Guaranteed <strong className="text-white font-bold">92% Direct Fair Wages</strong> to Artisans • Zero Corporate Markups
+              92% Worker Fair Wage • 5% Platform & Maintenance • 3% Insurance
             </span>
           </div>
 
           <div className="flex items-center gap-3 text-[#D8CDC5] text-[11px]">
-            <span className="hidden md:inline text-[#A89A92]">Toll-Free: <strong className="text-white">1800-200-7242</strong></span>
+            <span className="hidden md:inline text-[#A89A92]">National Helpline: <strong className="text-white">1800-200-7242</strong></span>
             <span className="hidden md:inline text-[#5A4D4A]">•</span>
             <button
               onClick={handleOpenEmergency}
@@ -176,84 +181,104 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Clean Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 text-xs font-semibold">
-            <button
-              id="nav-services-btn"
-              onClick={() => setCurrentTab("SERVICES")}
-              className={`px-3 py-2 rounded-lg transition-colors cursor-pointer ${
-                currentTab === "SERVICES" || currentTab === "marketplace"
-                  ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
-                  : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
-              }`}
-            >
-              Services Catalog
-            </button>
+          {/* Navigation: Dynamic based on Customer Mode vs Federation Portal */}
+          <nav className="hidden lg:flex items-center gap-1.5 text-xs font-semibold">
+            {!isFederationMode ? (
+              // Customer Mode Links (Clean, No Bureaucracy)
+              <>
+                <button
+                  id="nav-services-btn"
+                  onClick={() => setCurrentTab("SERVICES")}
+                  className={`px-3.5 py-2 rounded-lg transition-colors cursor-pointer ${
+                    currentTab === "SERVICES" || currentTab === "marketplace"
+                      ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
+                      : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
+                  }`}
+                >
+                  Book Services
+                </button>
 
-            <button
-              id="nav-workers-btn"
-              onClick={() => setCurrentTab("WORKERS")}
-              className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
-                currentTab === "WORKERS" || currentTab === "workers"
-                  ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
-                  : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
-              }`}
-            >
-              <Users className="w-3.5 h-3.5 text-[#847571]" />
-              Verified Artisans
-            </button>
+                <button
+                  id="nav-workers-btn"
+                  onClick={() => setCurrentTab("WORKERS")}
+                  className={`px-3.5 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    currentTab === "WORKERS" || currentTab === "workers"
+                      ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
+                      : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
+                  }`}
+                >
+                  <Users className="w-3.5 h-3.5 text-[#847571]" />
+                  Verified Artisans
+                </button>
 
-            <button
-              id="nav-welfare-btn"
-              onClick={() => setCurrentTab("WELFARE")}
-              className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
-                currentTab === "WELFARE" || currentTab === "welfare"
-                  ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
-                  : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
-              }`}
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#8B1D31]" />
-              Welfare Fund
-            </button>
+                <button
+                  onClick={handleOpenEmergency}
+                  className="px-3 py-2 rounded-lg text-[#8B1D31] hover:bg-[#FBF0F2] transition-colors flex items-center gap-1.5 cursor-pointer"
+                >
+                  <AlertTriangle className="w-3.5 h-3.5 text-[#8B1D31]" />
+                  30-Min SOS
+                </button>
 
-            <button
-              id="nav-institutional-btn"
-              onClick={() => setCurrentTab("INSTITUTIONAL")}
-              className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
-                currentTab === "INSTITUTIONAL"
-                  ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
-                  : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
-              }`}
-            >
-              <Briefcase className="w-3.5 h-3.5 text-[#847571]" />
-              Institutional / RWA AMC
-            </button>
+                <button
+                  id="nav-to-federation-btn"
+                  onClick={() => setCurrentTab("FEDERATION_ADMIN")}
+                  className="ml-2 px-3 py-1.5 rounded-full border border-[#E8DFD5] bg-[#FAF7F2] hover:bg-[#F5EFE8] text-[#5A4D4A] hover:text-[#231715] text-[11px] font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
+                  title="Access Cooperative Society and Federation Management"
+                >
+                  <Building2 className="w-3.5 h-3.5 text-[#847571]" />
+                  <span>Cooperative Portal</span>
+                </button>
+              </>
+            ) : (
+              // Cooperative Federation Portal Sub-Nav
+              <>
+                <button
+                  onClick={() => setCurrentTab("SERVICES")}
+                  className="mr-2 px-3 py-1.5 rounded-full bg-[#FAF7F2] border border-[#E8DFD5] hover:bg-[#F5EFE8] text-[#8B1D31] text-xs font-bold flex items-center gap-1 cursor-pointer"
+                >
+                  ← Customer Booking
+                </button>
 
-            <button
-              id="nav-admin-btn"
-              onClick={() => setCurrentTab("FEDERATION_ADMIN")}
-              className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
-                currentTab === "FEDERATION_ADMIN" || currentTab === "admin"
-                  ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
-                  : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
-              }`}
-            >
-              <Building2 className="w-3.5 h-3.5 text-[#847571]" />
-              Federation Portal
-            </button>
+                <button
+                  id="nav-admin-btn"
+                  onClick={() => setCurrentTab("FEDERATION_ADMIN")}
+                  className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    currentTab === "FEDERATION_ADMIN"
+                      ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
+                      : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
+                  }`}
+                >
+                  <Building2 className="w-3.5 h-3.5 text-[#847571]" />
+                  Federation & AI
+                </button>
 
-            <button
-              id="nav-join-btn"
-              onClick={() => setCurrentTab("JOIN_COOP")}
-              className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
-                currentTab === "JOIN_COOP" || currentTab === "register"
-                  ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
-                  : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
-              }`}
-            >
-              <UserPlus className="w-3.5 h-3.5 text-[#847571]" />
-              Join as Artisan
-            </button>
+                <button
+                  id="nav-welfare-btn"
+                  onClick={() => setCurrentTab("WELFARE")}
+                  className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    currentTab === "WELFARE"
+                      ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
+                      : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
+                  }`}
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#8B1D31]" />
+                  Welfare Fund
+                </button>
+
+                <button
+                  id="nav-join-btn"
+                  onClick={() => setCurrentTab("JOIN_COOP")}
+                  className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    currentTab === "JOIN_COOP"
+                      ? "text-[#8B1D31] bg-[#FBF0F2] font-bold border border-[#F0CCD3]"
+                      : "text-[#5A4D4A] hover:text-[#231715] hover:bg-[#F5EFE8]"
+                  }`}
+                >
+                  <UserPlus className="w-3.5 h-3.5 text-[#847571]" />
+                  Artisan Onboarding
+                </button>
+              </>
+            )}
           </nav>
 
           {/* Right Action Controls (Language, My Bookings, Cart) */}
@@ -321,72 +346,87 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Horizontal Sub-Navigation */}
         <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto py-2.5 border-t border-[#E8DFD5] scrollbar-none text-xs font-semibold text-[#5A4D4A]">
-          <button
-            onClick={() => setCurrentTab("SERVICES")}
-            className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              currentTab === "SERVICES" || currentTab === "marketplace"
-                ? "bg-[#8B1D31] text-white font-bold"
-                : "bg-[#F5EFE8] text-[#5A4D4A]"
-            }`}
-          >
-            Services
-          </button>
-          <button
-            onClick={() => setCurrentTab("WORKERS")}
-            className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              currentTab === "WORKERS" || currentTab === "workers"
-                ? "bg-[#8B1D31] text-white font-bold"
-                : "bg-[#F5EFE8] text-[#5A4D4A]"
-            }`}
-          >
-            Artisans
-          </button>
-          <button
-            onClick={() => setCurrentTab("WELFARE")}
-            className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              currentTab === "WELFARE" || currentTab === "welfare"
-                ? "bg-[#8B1D31] text-white font-bold"
-                : "bg-[#F5EFE8] text-[#5A4D4A]"
-            }`}
-          >
-            Welfare Fund
-          </button>
-          <button
-            onClick={() => setCurrentTab("INSTITUTIONAL")}
-            className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              currentTab === "INSTITUTIONAL"
-                ? "bg-[#8B1D31] text-white font-bold"
-                : "bg-[#F5EFE8] text-[#5A4D4A]"
-            }`}
-          >
-            RWAs & B2B
-          </button>
-          <button
-            onClick={() => setCurrentTab("FEDERATION_ADMIN")}
-            className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              currentTab === "FEDERATION_ADMIN" || currentTab === "admin"
-                ? "bg-[#8B1D31] text-white font-bold"
-                : "bg-[#F5EFE8] text-[#5A4D4A]"
-            }`}
-          >
-            Federation Portal
-          </button>
-          <button
-            onClick={() => setCurrentTab("JOIN_COOP")}
-            className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              currentTab === "JOIN_COOP" || currentTab === "register"
-                ? "bg-[#8B1D31] text-white font-bold"
-                : "bg-[#F5EFE8] text-[#5A4D4A]"
-            }`}
-          >
-            Join as Artisan
-          </button>
-          <button
-            onClick={handleOpenMyBookings}
-            className="px-3 py-1 rounded-full whitespace-nowrap bg-[#F5EFE8] text-[#5A4D4A]"
-          >
-            My Orders
-          </button>
+          {!isFederationMode ? (
+            <>
+              <button
+                onClick={() => setCurrentTab("SERVICES")}
+                className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
+                  currentTab === "SERVICES" || currentTab === "marketplace"
+                    ? "bg-[#8B1D31] text-white font-bold"
+                    : "bg-[#F5EFE8] text-[#5A4D4A]"
+                }`}
+              >
+                Services
+              </button>
+              <button
+                onClick={() => setCurrentTab("WORKERS")}
+                className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
+                  currentTab === "WORKERS" || currentTab === "workers"
+                    ? "bg-[#8B1D31] text-white font-bold"
+                    : "bg-[#F5EFE8] text-[#5A4D4A]"
+                }`}
+              >
+                Artisans
+              </button>
+              <button
+                onClick={handleOpenMyBookings}
+                className="px-3 py-1 rounded-full whitespace-nowrap bg-[#F5EFE8] text-[#5A4D4A]"
+              >
+                My Orders
+              </button>
+              <button
+                onClick={handleOpenEmergency}
+                className="px-3 py-1 rounded-full whitespace-nowrap bg-[#FBF0F2] text-[#8B1D31] font-bold border border-[#F0CCD3]"
+              >
+                SOS Emergency
+              </button>
+              <button
+                onClick={() => setCurrentTab("FEDERATION_ADMIN")}
+                className="px-3 py-1 rounded-full whitespace-nowrap bg-[#F5EFE8] text-[#5A4D4A] border border-[#E8DFD5]"
+              >
+                Cooperative Hub →
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setCurrentTab("SERVICES")}
+                className="px-3 py-1 rounded-full whitespace-nowrap bg-[#8B1D31] text-white font-bold"
+              >
+                ← Customer Services
+              </button>
+              <button
+                onClick={() => setCurrentTab("FEDERATION_ADMIN")}
+                className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
+                  currentTab === "FEDERATION_ADMIN"
+                    ? "bg-[#8B1D31] text-white font-bold"
+                    : "bg-[#F5EFE8] text-[#5A4D4A]"
+                }`}
+              >
+                Federation
+              </button>
+              <button
+                onClick={() => setCurrentTab("WELFARE")}
+                className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
+                  currentTab === "WELFARE"
+                    ? "bg-[#8B1D31] text-white font-bold"
+                    : "bg-[#F5EFE8] text-[#5A4D4A]"
+                }`}
+              >
+                Welfare
+              </button>
+              <button
+                onClick={() => setCurrentTab("JOIN_COOP")}
+                className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
+                  currentTab === "JOIN_COOP"
+                    ? "bg-[#8B1D31] text-white font-bold"
+                    : "bg-[#F5EFE8] text-[#5A4D4A]"
+                }`}
+              >
+                Join Coop
+              </button>
+            </>
+          )}
         </div>
       </div>
     </header>

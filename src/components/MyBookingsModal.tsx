@@ -29,6 +29,7 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
   onAddReview,
 }) => {
   const [selectedBookingForReview, setSelectedBookingForReview] = useState<Booking | null>(null);
+  const [selectedBookingForInvoice, setSelectedBookingForInvoice] = useState<Booking | null>(null);
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState("");
   const [tipRupees, setTipRupees] = useState(0);
@@ -108,13 +109,17 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                       </div>
                     </div>
 
-                    <div className="text-right">
+                    <div className="text-right flex flex-col items-end">
                       <div className="text-sm font-extrabold text-[#231715]">
                         ₹{booking.totalAmountRupees}
                       </div>
-                      <div className="text-[10px] text-[#8B1D31] font-medium">
-                        Worker gets ₹{booking.workerPayoutRupees} (92%)
-                      </div>
+                      <button
+                        onClick={() => setSelectedBookingForInvoice(booking)}
+                        className="text-[10px] text-[#8B1D31] font-bold hover:underline flex items-center gap-1 mt-0.5 cursor-pointer"
+                      >
+                        <FileText className="w-3 h-3" />
+                        Digital Invoice
+                      </button>
                     </div>
                   </div>
 
@@ -281,6 +286,151 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
               >
                 Submit Feedback
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* Digital Tax Invoice View & Print Modal */}
+        {selectedBookingForInvoice && (
+          <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-[#231715]/70 backdrop-blur-xs">
+            <div className="bg-white border border-[#E8DFD5] rounded-xl p-6 max-w-lg w-full shadow-2xl space-y-5 animate-in fade-in text-[#231715]">
+              <div className="flex items-start justify-between border-b border-[#E8DFD5] pb-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-[#8B1D31] text-white flex items-center justify-center font-extrabold text-xs">
+                      SS
+                    </div>
+                    <span className="font-extrabold text-sm text-[#231715]">
+                      SAHAKAR SEVA DIGITAL INVOICE
+                    </span>
+                  </div>
+                  <div className="text-[10px] text-[#847571] mt-0.5">
+                    Cooperative Service Voucher • Non-Commercial Cooperative Registry
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setSelectedBookingForInvoice(null)}
+                  className="p-1.5 rounded-lg hover:bg-[#FAF7F2] text-[#847571] hover:text-[#231715] transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Invoice Meta */}
+              <div className="grid grid-cols-2 gap-3 text-xs bg-[#FAF7F2] p-3.5 rounded-xl border border-[#E8DFD5]">
+                <div>
+                  <div className="text-[10px] text-[#847571] uppercase font-semibold">Invoice No</div>
+                  <div className="font-bold text-[#231715] font-mono">{selectedBookingForInvoice.id}</div>
+                </div>
+                <div>
+                  <div className="text-[10px] text-[#847571] uppercase font-semibold">Service Date</div>
+                  <div className="font-bold text-[#231715]">
+                    {selectedBookingForInvoice.scheduledDate} ({selectedBookingForInvoice.scheduledTime})
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[10px] text-[#847571] uppercase font-semibold">Billed To (Customer)</div>
+                  <div className="font-bold text-[#231715]">{selectedBookingForInvoice.customerName}</div>
+                  <div className="text-[10px] text-[#5A4D4A]">{selectedBookingForInvoice.customerPhone}</div>
+                </div>
+                <div>
+                  <div className="text-[10px] text-[#847571] uppercase font-semibold">Assigned Society / Worker</div>
+                  <div className="font-bold text-[#8B1D31]">
+                    {selectedBookingForInvoice.assignedWorker?.name || "Cooperative Artisan"}
+                  </div>
+                  <div className="text-[10px] text-[#5A4D4A] truncate">
+                    {selectedBookingForInvoice.assignedWorker?.societyName || "Labour Cooperative Federation"}
+                  </div>
+                </div>
+              </div>
+
+              {/* Line Items */}
+              <div className="space-y-2 text-xs">
+                <div className="font-bold text-[#5A4D4A] uppercase text-[10px] tracking-wider">
+                  Booked Services
+                </div>
+                <div className="space-y-1 border-t border-[#E8DFD5] pt-2">
+                  {selectedBookingForInvoice.items.map((item, i) => (
+                    <div key={i} className="flex justify-between items-center py-1 text-xs">
+                      <div>
+                        <div className="font-bold text-[#231715]">{item.subCategory.title}</div>
+                        <div className="text-[10px] text-[#847571]">
+                          Quantity: {item.quantity} • {item.subCategory.estimatedDurationMins} mins
+                        </div>
+                      </div>
+                      <span className="font-extrabold text-[#231715]">
+                        ₹{item.subCategory.basePriceRupees * item.quantity}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-2 border-t border-[#E8DFD5] space-y-1 text-xs">
+                  <div className="flex justify-between text-[#5A4D4A]">
+                    <span>Platform Convenience Fee:</span>
+                    <span className="font-bold text-[#8B1D31]">₹0 (Free)</span>
+                  </div>
+                  <div className="flex justify-between text-[#5A4D4A]">
+                    <span>Payment Mode:</span>
+                    <span className="font-semibold text-[#231715]">
+                      {selectedBookingForInvoice.paymentMethod} ({selectedBookingForInvoice.paymentStatus})
+                    </span>
+                  </div>
+                  <div className="flex justify-between pt-2 border-t border-[#E8DFD5] text-sm font-extrabold text-[#231715]">
+                    <span>Total Paid:</span>
+                    <span className="text-[#8B1D31]">₹{selectedBookingForInvoice.totalAmountRupees}</span>
+                  </div>
+                </div>
+
+                {/* Statutory 92/5/3 Value Allocation Voucher */}
+                <div className="bg-white p-3 rounded-lg border border-[#E8DFD5] space-y-1 text-[11px] text-[#5A4D4A]">
+                  <div className="font-bold text-[10px] text-[#8B1D31] uppercase tracking-wider">
+                    Statutory Cooperative Value Allocation (92 / 5 / 3)
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Worker Direct Fair Wage (92%):</span>
+                    <span className="font-bold text-[#8B1D31]">₹{selectedBookingForInvoice.workerPayoutRupees}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Platform & Maintenance (5%):</span>
+                    <span className="font-medium text-[#231715]">₹{selectedBookingForInvoice.welfarePoolRupees}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Worker Insurance & Protection (3%):</span>
+                    <span className="font-medium text-[#231715]">₹{selectedBookingForInvoice.emergencyReserveRupees}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Safety OTP Badge */}
+              <div className="bg-[#FBF0F2] border border-[#F0CCD3] text-[#8B1D31] rounded-xl p-3 flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] font-bold uppercase">Safety Verification OTP</div>
+                  <div className="text-xs text-[#8B1D31]/80">Unique job verification code</div>
+                </div>
+                <div className="text-xl font-mono font-bold text-[#8B1D31] tracking-widest bg-white border border-[#F0CCD3] px-3 py-1 rounded-lg">
+                  {selectedBookingForInvoice.otp}
+                </div>
+              </div>
+
+              {/* Print / Close Actions */}
+              <div className="flex items-center gap-3 pt-1">
+                <button
+                  onClick={() => window.print()}
+                  className="flex-1 py-2.5 rounded-lg border border-[#E8DFD5] bg-white hover:bg-[#FAF7F2] text-[#231715] text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                >
+                  <Printer className="w-4 h-4 text-[#847571]" />
+                  Print / Save PDF
+                </button>
+
+                <button
+                  onClick={() => setSelectedBookingForInvoice(null)}
+                  className="flex-1 py-2.5 rounded-lg bg-[#8B1D31] hover:bg-[#731627] text-white text-xs font-bold flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         )}

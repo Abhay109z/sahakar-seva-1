@@ -63,8 +63,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const totalBasePrice = subCategory.basePriceRupees * quantity;
   const workerPayout = Math.round(totalBasePrice * 0.92);
-  const societyWelfare = Math.round(totalBasePrice * 0.05);
-  const emergencyReserve = Math.round(totalBasePrice * 0.03);
+  const platformMaintenance = Math.round(totalBasePrice * 0.05);
+  const insurancePool = Math.round(totalBasePrice * 0.03);
 
   // Find a matching sample verified worker from this trade
   const sampleWorker = COOPERATIVE_WORKERS.find(
@@ -129,42 +129,33 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         </div>
 
         <div className="p-5 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto">
-          {/* Transparent Cooperative Pricing Breakdown (92% Direct Fair Wage) */}
-          <div className="bg-[#FBF0F2] border border-[#F0CCD3] rounded-xl p-4 space-y-3">
+          {/* Clean Customer Price & Trust Card */}
+          <div className="bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl p-4 space-y-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#8B1D31] uppercase tracking-wide">
-                <ShieldCheck className="w-4 h-4 text-[#8B1D31]" />
-                Cooperative Fair-Wage Guarantee (92%)
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-bold text-[#8B1D31]">
+                  <ShieldCheck className="w-4 h-4 text-[#8B1D31]" />
+                  Fixed Fair Price Guarantee
+                </div>
+                <div className="text-[11px] text-[#5A4D4A] mt-0.5 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#8B1D31] shrink-0" />
+                  <span>Police-Verified Artisan • 30-Day Workmanship Warranty</span>
+                </div>
               </div>
+
               <div className="text-right">
                 <span className="text-xl font-extrabold text-[#231715]">₹{totalBasePrice}</span>
-                <span className="text-xs text-[#847571] ml-1">all inclusive</span>
+                <div className="text-[10px] text-[#847571]">Standard rate (All inclusive)</div>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 text-center text-xs">
-              <div className="bg-white p-2.5 rounded-lg border border-[#F0CCD3] shadow-2xs">
-                <div className="text-[11px] text-[#847571]">Worker Payout (92%)</div>
-                <div className="font-extrabold text-[#8B1D31] text-sm">₹{workerPayout}</div>
-                <div className="text-[9px] text-[#8B1D31] font-medium">Direct to Artisan</div>
-              </div>
-
-              <div className="bg-white p-2.5 rounded-lg border border-[#F0CCD3] shadow-2xs">
-                <div className="text-[11px] text-[#847571]">Society Fund (5%)</div>
-                <div className="font-extrabold text-[#8B1D31] text-sm">₹{societyWelfare}</div>
-                <div className="text-[9px] text-[#5A4D4A] font-medium">Pension & Welfare</div>
-              </div>
-
-              <div className="bg-white p-2.5 rounded-lg border border-[#F0CCD3] shadow-2xs">
-                <div className="text-[11px] text-[#847571]">Medical Pool (3%)</div>
-                <div className="font-extrabold text-[#8B1D31] text-sm">₹{emergencyReserve}</div>
-                <div className="text-[9px] text-[#5A4D4A] font-medium">PMSBY Coverage</div>
-              </div>
-            </div>
-
-            <div className="text-[11px] text-[#8B1D31] flex items-center justify-center gap-1 font-semibold">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#8B1D31]" />
-              <span>0% Corporate Commission • Owned by Registered Worker Cooperative</span>
+            <div className="pt-2 border-t border-[#E8DFD5] flex items-center justify-between text-[11px] text-[#5A4D4A]">
+              <span className="font-semibold text-[#8B1D31]">Transparent Cooperative Split:</span>
+              <span>
+                <strong className="text-[#231715]">92% Worker</strong> (₹{workerPayout}) •{" "}
+                <strong className="text-[#231715]">5% Platform & Maintenance</strong> (₹{platformMaintenance}) •{" "}
+                <strong className="text-[#231715]">3% Insurance</strong> (₹{insurancePool})
+              </span>
             </div>
           </div>
 

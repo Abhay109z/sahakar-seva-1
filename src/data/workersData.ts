@@ -278,7 +278,7 @@ export const WELFARE_METRICS: WelfareMetric[] = [
     amount: "₹4.28 Crore",
     change: "+18.4% this quarter",
     beneficiariesCount: 18450,
-    description: "Built via 10% direct allocation from every booking fee. 100% owned by member societies.",
+    description: "Built via transparent cooperative allocation: 92% worker, 5% platform & maintenance, and 3% insurance reserves.",
     icon: "ShieldCheck",
   },
   {

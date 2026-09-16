@@ -5,8 +5,7 @@ export type NavigationTab =
   | "WORKERS"
   | "WELFARE"
   | "FEDERATION_ADMIN"
-  | "JOIN_COOP"
-  | "INSTITUTIONAL";
+  | "JOIN_COOP";
 
 
 export interface ServiceCategory {

@@ -301,8 +301,9 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
             </div>
             <p className="text-[11px] text-[#5A4D4A] leading-relaxed">
               Unlike private aggregators charging 25–40% commissions, Sahakar Seva distributes{" "}
-              <strong className="text-[#231715]">92% directly to the artisan</strong>, 5% to the Primary Labour Society
-              welfare & pension fund, and 3% to the emergency health & accident reserve.{" "}
+              <strong className="text-[#231715]">92% directly to the worker</strong>,{" "}
+              <strong className="text-[#231715]">5% to platform and maintenance</strong>, and{" "}
+              <strong className="text-[#8B1D31]">3% to worker insurance</strong>.{" "}
               <strong className="text-[#8B1D31]">Zero corporate shareholder extraction.</strong>
             </p>
           </div>
@@ -370,11 +371,11 @@ export const ServiceCatalog: React.FC<ServiceCatalogProps> = ({
                       <span className="text-base font-extrabold text-[#231715]">
                         ₹{sub.basePriceRupees}
                       </span>
-                      <span className="text-[11px] font-semibold text-[#8B1D31] bg-[#FBF0F2] border border-[#F0CCD3] px-1.5 py-0.5 rounded">
-                        92% to artisan (₹{workerCut})
+                      <span className="text-[10px] font-bold text-[#8B1D31] bg-[#FBF0F2] border border-[#F0CCD3] px-1.5 py-0.5 rounded">
+                        Fixed Fair Price
                       </span>
                     </div>
-                    <div className="text-[10px] text-[#847571] mt-0.5">Fixed cooperative transparent rate</div>
+                    <div className="text-[10px] text-[#847571] mt-0.5">Standard rate • No hidden charges</div>
                   </div>
 
                   {/* Urban Company Action Button */}
