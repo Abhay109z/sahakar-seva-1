@@ -1,16 +1,22 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { COOPERATIVE_WORKERS, COOPERATIVE_SOCIETIES, WELFARE_METRICS } from "./src/data/workersData";
+import { COOPERATIVE_WORKERS, COOPERATIVE_SOCIETIES, WELFARE_METRICS, INITIAL_SAMPLE_BOOKINGS } from "./src/data/workersData";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
 const app = express();
-// Bind to port 3000 in AI Studio; support dynamic PORT when deploying to Render
-const PORT = process.env.RENDER ? (Number(process.env.PORT) || 3000) : 3000;
+// Bind to port 3000 in AI Studio; support dynamic PORT when deploying to Render / Cloud hosts
+const PORT = process.env.RENDER
+  ? (Number(process.env.PORT) || 3000)
+  : (process.env.PORT && process.env.PORT !== "8080" ? Number(process.env.PORT) : 3000);
 
 app.use(express.json());
 
@@ -81,51 +87,7 @@ const BookingModel = mongoose.models.Booking || mongoose.model("Booking", Bookin
 
 // In-Memory Documents Store for guaranteed resilience if external Mongo URI is absent
 let inMemoryWorkers = [...COOPERATIVE_WORKERS];
-let inMemoryBookings: any[] = [
-  {
-    id: "SHK-COOP-882194",
-    createdAt: new Date(Date.now() - 3600000 * 24 * 2).toISOString(),
-    customerName: "Ananya Deshmukh",
-    customerPhone: "+91 98201 45678",
-    customerAddress: "Flat 502, Orchid Towers, South Delhi",
-    customerCity: "Delhi NCR",
-    items: [
-      {
-        categoryTitle: "Electrical & Power Systems",
-        subCategory: {
-          id: "elec-switch",
-          categoryId: "cat-electrician",
-          title: "Switchboard & MCB Repair",
-          description: "Diagnosis of tripping MCB and replacement of switches",
-          estimatedDurationMins: 45,
-          basePriceRupees: 299,
-          fairWagePercent: 92,
-          rating: 4.9,
-          totalBookings: 1840,
-        },
-        quantity: 1,
-        date: "2 days ago",
-        timeSlot: "10:00 AM - 12:00 PM",
-      },
-    ],
-    totalAmountRupees: 299,
-    workerPayoutRupees: 275,
-    welfarePoolRupees: 15,
-    emergencyReserveRupees: 9,
-    platformCommissionRupees: 0,
-    status: "COMPLETED",
-    assignedWorker: COOPERATIVE_WORKERS[0],
-    isEmergency: false,
-    scheduledDate: "2 days ago",
-    scheduledTime: "10:00 AM",
-    paymentMethod: "UPI",
-    paymentStatus: "PAID",
-    otp: "4921",
-    rating: 5,
-    reviewComment: "Prompt arrival and transparent billing. Loved the cooperative approach!",
-    tipRupees: 50,
-  },
-];
+let inMemoryBookings: any[] = [...INITIAL_SAMPLE_BOOKINGS];
 
 let isMongoConnected = false;
 
@@ -474,14 +436,37 @@ Generate a matching rationale and dispatch recommendation as a JSON object:
   }
 });
 
+// API 404 handler to guarantee JSON response and prevent HTML error pages leaking into client fetch calls
+app.all("/api/*", (req, res) => {
+  res.status(404).json({
+    success: false,
+    error: `API route not found: ${req.method} ${req.originalUrl}`,
+  });
+});
+
 // Vite middleware setup
 async function startServer() {
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
+  const isProduction =
+    process.env.NODE_ENV === "production" ||
+    process.env.RENDER === "true" ||
+    __filename.endsWith(".cjs") ||
+    __filename.includes("dist");
+
+  if (!isProduction) {
+    try {
+      const vite = await createViteServer({
+        server: { middlewareMode: true },
+        appType: "spa",
+      });
+      app.use(vite.middlewares);
+    } catch (e) {
+      console.warn("Vite middleware init fallback to static assets:", e);
+      const distPath = path.join(process.cwd(), "dist");
+      app.use(express.static(distPath));
+      app.get("*", (_req, res) => {
+        res.sendFile(path.join(distPath, "index.html"));
+      });
+    }
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));

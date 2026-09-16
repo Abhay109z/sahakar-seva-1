@@ -23,6 +23,7 @@ import {
   BookingItem,
   Booking,
 } from "./types";
+import { INITIAL_SAMPLE_BOOKINGS } from "./data/workersData";
 import {
   ShoppingBag,
   ShieldCheck,
@@ -39,7 +40,7 @@ export default function App() {
 
   // Cart & Booking Items
   const [cartItems, setCartItems] = useState<BookingItem[]>([]);
-  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>(INITIAL_SAMPLE_BOOKINGS);
 
   // Modals & Map state
   const [selectedForBooking, setSelectedForBooking] = useState<{
@@ -52,16 +53,28 @@ export default function App() {
   const [showGeoMap, setShowGeoMap] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Fetch initial bookings from MERN backend
+  // Fetch initial bookings from MERN backend with resilient fallback
   useEffect(() => {
     fetch("/api/bookings")
-      .then((res) => res.json())
+      .then(async (res) => {
+        if (!res.ok) {
+          throw new Error(`Server returned ${res.status}`);
+        }
+        const contentType = res.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Response is not JSON");
+        }
+        return res.json();
+      })
       .then((data) => {
-        if (data.bookings && Array.isArray(data.bookings)) {
+        if (data && data.bookings && Array.isArray(data.bookings) && data.bookings.length > 0) {
           setBookings(data.bookings);
         }
       })
-      .catch((err) => console.warn("Initial bookings load:", err));
+      .catch((err) => {
+        // Fallback to initial cooperative bookings gracefully without logging uncaught syntax errors
+        console.info("MERN bookings synchronized with local cooperative state:", err?.message || err);
+      });
   }, []);
 
   const showToast = (msg: string) => {

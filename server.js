@@ -24,4 +24,5 @@ if (!existsSync(distServerPath) || !existsSync(distHtmlPath)) {
 
 // Start the bundled production server
 console.log("Launching Sahakar Seva production server...");
+process.env.NODE_ENV = "production";
 require(distServerPath);

@@ -1,4 +1,4 @@
-import { CooperativeWorker, CooperativeSociety, WelfareMetric } from "../types";
+import { CooperativeWorker, CooperativeSociety, WelfareMetric, Booking } from "../types";
 
 export const COOPERATIVE_SOCIETIES: CooperativeSociety[] = [
   {
@@ -306,3 +306,56 @@ export const WELFARE_METRICS: WelfareMetric[] = [
     icon: "GraduationCap",
   },
 ];
+
+export const INITIAL_SAMPLE_BOOKINGS: Booking[] = [
+  {
+    id: "SHK-COOP-882194",
+    createdAt: new Date(Date.now() - 3600000 * 24 * 2).toISOString(),
+    customerName: "Ananya Deshmukh",
+    customerPhone: "+91 98201 45678",
+    customerAddress: "Flat 502, Orchid Towers, South Delhi",
+    customerCity: "Delhi NCR",
+    items: [
+      {
+        categoryTitle: "Electrical & Power Systems",
+        serviceAddress: "Flat 502, Orchid Towers, South Delhi",
+        subCategory: {
+          id: "elec-switch",
+          categoryId: "cat-electrician",
+          title: "Switchboard & MCB Repair",
+          description: "Diagnosis of tripping MCB and replacement of switches",
+          estimatedDurationMins: 45,
+          basePriceRupees: 299,
+          fairWagePercent: 92,
+          rating: 4.9,
+          totalBookings: 1840,
+          included: [
+            "Complete electrical load and circuit safety check",
+            "Genuine ISI-marked switches and contact screws",
+            "Cooperative workmanship warranty card",
+          ],
+        },
+        quantity: 1,
+        date: "2 days ago",
+        timeSlot: "10:00 AM - 12:00 PM",
+      },
+    ],
+    totalAmountRupees: 299,
+    workerPayoutRupees: 275,
+    welfarePoolRupees: 15,
+    emergencyReserveRupees: 9,
+    platformCommissionRupees: 0,
+    status: "COMPLETED",
+    assignedWorker: COOPERATIVE_WORKERS[0],
+    isEmergency: false,
+    scheduledDate: "2 days ago",
+    scheduledTime: "10:00 AM",
+    paymentMethod: "UPI",
+    paymentStatus: "PAID",
+    otp: "4921",
+    rating: 5,
+    reviewComment: "Prompt arrival and transparent billing. Loved the cooperative approach!",
+    workerTipRupees: 50,
+  },
+];
+

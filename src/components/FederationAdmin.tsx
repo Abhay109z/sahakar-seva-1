@@ -87,9 +87,11 @@ export const FederationAdmin: React.FC = () => {
           timeHorizonDays: 14,
         }),
       });
-      const data = await res.json();
-      if (data && data.forecast) {
-        setForecastResult(data.forecast);
+      if (res.ok && res.headers.get("content-type")?.includes("application/json")) {
+        const data = await res.json();
+        if (data && data.forecast) {
+          setForecastResult(data.forecast);
+        }
       }
     } catch (err) {
       console.error("AI forecast call error:", err);
