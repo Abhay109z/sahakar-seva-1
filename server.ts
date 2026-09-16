@@ -1,14 +1,10 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { COOPERATIVE_WORKERS, COOPERATIVE_SOCIETIES, WELFARE_METRICS, INITIAL_SAMPLE_BOOKINGS } from "./src/data/workersData";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -448,9 +444,9 @@ app.all("/api/*", (req, res) => {
 async function startServer() {
   const isProduction =
     process.env.NODE_ENV === "production" ||
-    process.env.RENDER === "true" ||
-    __filename.endsWith(".cjs") ||
-    __filename.includes("dist");
+    Boolean(process.env.RENDER) ||
+    Boolean(process.argv[1]?.endsWith(".cjs")) ||
+    Boolean(process.argv[1]?.includes("dist"));
 
   if (!isProduction) {
     try {
